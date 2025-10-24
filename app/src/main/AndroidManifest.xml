@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/fiih"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.GdlPda"
+        android:networkSecurityConfig="@xml/network_security_config"
+        tools:targetApi="31">
+        <activity
+            android:name=".LoginActivity"
+            android:exported="true"
+            android:theme="@style/Theme.GdlPda.NoActionBar"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".HomeActivity" />
+        <activity android:name=".SendTrolleyActivity"
+                  android:windowSoftInputMode="stateAlwaysHidden"/>
+        <activity android:name=".CallTrolleyActivity"
+                  android:windowSoftInputMode="stateAlwaysHidden"/>
+        <activity android:name=".QueryActivity" />
+        <activity android:name=".QueryGroundActivity" />
+        <activity android:name=".BindProductActivity" />
+        <activity android:name=".BindGroundActivity" />
+        <activity android:name=".UnbindActivity"
+                  android:windowSoftInputMode="stateAlwaysHidden"/>
+        <activity android:name=".AboutActivity" />
+        <activity android:name=".SettingActivity" />
+        <activity android:name=".BindFlProductActivity" />
+        <activity android:name=".UnbindFlActivity" />
+        <activity android:name=".ForkliftActivity" />
+        <activity android:name=".UnbindProductActivity" />
+        <activity android:name=".CallModuleActivity" />
+        <activity android:name=".QueryModuleActivity" />
+        <activity android:name=".ExceptionActivity" />
+        <activity android:name=".MainActivity" />
+        <activity android:name=".TaskActivity" />
+        <activity android:name=".CallFlTrolleyActivity" />
+        <activity android:name=".CallModuleFlActivity" />
+        <activity android:name=".SendFlTrolleyActivity" />
+        <service
+            android:name=".service.ExceptionMessageService"
+            android:enabled="true"
+            android:exported="false" />
+        <service
+            android:name=".service.HeartbeatService"
+            android:enabled="true"
+            android:exported="false" />
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+
+    </application>
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
+    <uses-permission android:name="android.permission.READ_PHOME_STATE" />
+    <uses-permission android:name="com.honeywell.decode.permission.DECODE" />
+
+
+</manifest>

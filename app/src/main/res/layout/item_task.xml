@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="4dp">
+
+    <!-- 任务号 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingBottom="4dp">
+    <TextView
+        android:id="@+id/task_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Task No: 789"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:layout_weight="1"
+        android:paddingBottom="4dp" />
+
+        <Button
+            android:id="@+id/cancel_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Delete" />
+        <!-- 取消按钮 -->
+    </LinearLayout>
+    <!-- 起点到终点 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingBottom="4dp">
+
+        <TextView
+            android:id="@+id/task_start_point"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="A1"
+            android:textSize="14sp"
+            android:paddingEnd="4dp" />
+
+        <ImageView
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:src="@drawable/forward"
+            android:contentDescription="Arrow"
+            android:layout_marginEnd="4dp" />
+
+        <TextView
+            android:id="@+id/task_end_point"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="B2"
+            android:textSize="14sp" />
+    </LinearLayout>
+     <!-- 左侧信息 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Status: "
+            android:textSize="14sp"
+            android:paddingBottom="4dp" />
+        <TextView
+            android:id="@+id/task_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Status: In Progress"
+            android:background="@android:color/holo_blue_light"
+            android:textSize="14sp"
+            android:paddingBottom="4dp" />
+            <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="  "
+            android:textSize="14sp"
+            android:paddingBottom="4dp" />
+
+        <TextView
+            android:id="@+id/task_stage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Stage: Loading"
+            android:background="@android:color/holo_blue_light"
+            android:textSize="14sp"
+            android:paddingBottom="4dp" />
+    </LinearLayout>
+
+    <!-- 任务信息部分 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+       
+        <!-- 中间信息 -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:orientation="horizontal">
+
+            <!-- Trolley No -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_weight="1"
+                android:paddingBottom="4dp">
+
+                <ImageView
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:src="@drawable/trolley"
+                    android:contentDescription="Trolley Icon"
+                    android:layout_marginEnd="4dp" />
+
+                <TextView
+                    android:id="@+id/task_trolley_number"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="T123"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <!-- AGV号 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_weight="1"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:src="@drawable/forklift"
+                    android:contentDescription="AGV Icon"
+                    android:layout_marginEnd="4dp" />
+
+                <TextView
+                    android:id="@+id/task_agv_number"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="AGV456"
+                    android:textSize="14sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+       
+    </LinearLayout>
+
+    <!-- 分隔线 -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"
+        android:layout_marginTop="8dp" />
+</LinearLayout>

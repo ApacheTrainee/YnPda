@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SettingActivity">
+
+    <!-- Top Section with Blue Rectangles, Image, and Text -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/top_section"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.3">
+
+        <!-- Top Blue Rectangle
+        <View
+            android:id="@+id/top_blue_rectangle"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@color/white"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent="0.2" />
+
+        <ImageView
+            android:id="@+id/fii_image"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            app:layout_constraintTop_toBottomOf="@id/top_blue_rectangle"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:src="@drawable/ic_launcher_foreground" /> -->
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- IP Address Input -->
+
+    <!-- IP Address Input -->
+
+    <TextView
+        android:id="@+id/ip_address_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="36dp"
+        android:text="Server IP:"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/top_section" />
+
+    <EditText
+        android:id="@+id/ip_address_input"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Enter Server IP"
+        android:inputType="text"
+        android:textSize="16sp"
+        app:layout_constraintTop_toBottomOf="@id/top_section"
+        app:layout_constraintStart_toEndOf="@id/ip_address_label"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="16dp"
+        android:padding="16dp" />
+
+    <!-- Port Label -->
+
+    <!-- Port Input -->
+
+    <TextView
+        android:id="@+id/port_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="36dp"
+        android:text="Server Port:"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ip_address_input" />
+
+    <EditText
+        android:id="@+id/port_input"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Enter Server Port"
+        android:inputType="number"
+        app:layout_constraintTop_toBottomOf="@id/ip_address_input"
+        app:layout_constraintStart_toEndOf="@id/port_label"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="16dp"
+        android:padding="16dp" />
+
+    <!-- Save Button -->
+    <Button
+        android:id="@+id/save_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Save"
+        app:layout_constraintTop_toBottomOf="@id/port_input"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:focusableInTouchMode="true"
+    android:focusedByDefault="false"
+    tools:context=".BindProductActivity">
+
+    <!-- 顶部导航栏 -->
+    <LinearLayout
+        android:id="@+id/top_nav"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <!-- <ImageButton
+            android:id="@+id/back_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_back"
+            android:contentDescription="Back" /> -->
+
+        <TextView
+            android:id="@+id/info_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="绑定地码 Gán mã mặt đất"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textSize="18sp" />
+    </LinearLayout>
+
+    <!-- QR Code 扫描框 -->
+    <LinearLayout
+        android:id="@+id/qr_code_section"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/top_nav">
+
+
+        <TextView
+            android:id="@+id/qr_code_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:text="货架码:"
+            android:textSize="16sp"
+            app:layout_constraintWidth_percent="0.8" />
+
+        <EditText
+            android:id="@+id/qr_code_input"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_weight="1"
+
+            android:background="@drawable/item_border"
+            android:hint=" Nhập mã kệ hàng"
+            android:inputType="text"/>
+
+        <ImageButton
+            android:id="@+id/qr_code_scan"
+            android:layout_width="54dp"
+            android:layout_height="54dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Scan QR Code"
+            android:src="@drawable/ic_qr_scan" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ground_code_section"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:orientation="horizontal"
+        android:padding="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/qr_code_section">
+
+
+        <TextView
+            android:id="@+id/ground_code_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:text="地码:"
+            android:textSize="16sp"
+            app:layout_constraintWidth_percent="0.8" />
+
+        <EditText
+            android:id="@+id/ground_code_input"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_weight="1"
+
+            android:background="@drawable/item_border"
+            android:hint="Nhập mã mặt đất"
+            android:inputType="text" />
+
+        <ImageButton
+            android:id="@+id/ground_code_scan"
+            android:layout_width="64dp"
+            android:layout_height="54dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Scan QR Code"
+            android:src="@drawable/ic_qr_scan" />
+    </LinearLayout>
+    <!-- RecyclerView -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="24dp"
+        app:layout_constraintBottom_toTopOf="@id/bind_product_notes"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ground_code_section"
+        tools:itemCount="8"
+        tools:listitem="@layout/item_trolley_product" />
+
+    <TextView
+        android:id="@+id/bind_product_notes"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="12dp"
+        android:text="提示: 扫描两个码，再点击按钮                            Lưu ý: Quét hai mã → Sau đó nhấn nút"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/submit_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/recyclerView" />
+    <!-- 提交按钮 -->
+    <Button
+        android:id="@+id/submit_button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:text="绑定 Gán mã mặt đất"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintWidth_percent="0.5" />
+</androidx.constraintlayout.widget.ConstraintLayout>

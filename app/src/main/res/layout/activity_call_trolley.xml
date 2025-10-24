@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:focusableInTouchMode="true"
+    android:focusedByDefault="false"
+    tools:context=".CallTrolleyActivity">
+
+    <!-- 顶部导航栏 -->
+    <LinearLayout
+        android:id="@+id/top_nav"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <!--<ImageView
+            android:id="@+id/back_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_back"
+            android:contentDescription="Back" />-->
+
+        <TextView
+            android:id="@+id/info_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="AGV呼叫物料 Gọi vật tư"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textSize="18sp" />
+    </LinearLayout>
+
+    <!-- Ground Code 扫描框 -->
+    <LinearLayout
+        android:id="@+id/ground_code_section"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal"
+        android:padding="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/top_nav">
+
+
+        <TextView
+            android:id="@+id/ground_code_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:text="地码:"
+            android:textSize="16sp"
+            app:layout_constraintWidth_percent="0.8" />
+
+        <EditText
+            android:id="@+id/ground_code_input"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_weight="1"
+
+            android:background="@drawable/item_border"
+            android:hint="Nhập mã mặt đất"
+            android:inputType="text" />
+
+        <ImageButton
+            android:id="@+id/ground_code_scan"
+            android:layout_width="54dp"
+            android:layout_height="54dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Scan QR Code"
+            android:src="@drawable/ic_qr_scan" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/agvTpye_section"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/ground_code_section">
+
+        <TextView
+            android:id="@+id/agvType_label"
+            android:layout_width="130dp"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="8dp"
+            android:layout_weight="1"
+            android:gravity="center_horizontal|center_vertical"
+            android:text="agvType:"
+            android:textSize="16sp"
+            app:layout_constraintWidth_percent="0.8" />
+
+        <Spinner
+            android:id="@+id/agvType_spinner"
+            android:layout_width="275dp"
+            android:layout_height="64dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/storage_section"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/agvTpye_section">
+
+        <TextView
+            android:id="@+id/storage_label"
+            android:layout_width="130dp"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="8dp"
+            android:layout_weight="1"
+            android:gravity="center_horizontal|center_vertical"
+            android:text="storage:"
+            android:textSize="16sp"
+            app:layout_constraintWidth_percent="0.8" />
+
+        <Spinner
+            android:id="@+id/storage_spinner"
+            android:layout_width="275dp"
+            android:layout_height="64dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/location_section"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/storage_section">
+
+        <TextView
+            android:id="@+id/location_label"
+            android:layout_width="130dp"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="8dp"
+            android:layout_weight="1"
+            android:gravity="center_horizontal|center_vertical"
+            android:text="location:"
+            android:textSize="16sp"
+            app:layout_constraintWidth_percent="0.8"/>
+
+        <Spinner
+            android:id="@+id/location_spinner"
+            android:layout_width="275dp"
+            android:layout_height="64dp" />
+    </LinearLayout>
+
+    <LinearLayout
+            android:id="@+id/boxSize_section"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@+id/location_section"
+            app:layout_constraintEnd_toEndOf="parent">
+
+        <TextView
+                android:id="@+id/boxSize_label"
+                android:layout_width="130dp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="8dp"
+                android:layout_weight="1"
+                android:gravity="center_horizontal|center_vertical"
+                android:text="boxSize:"
+                android:textSize="16sp"
+                app:layout_constraintWidth_percent="0.8"/>
+
+        <Spinner
+                android:id="@+id/boxSize_spinner"
+                android:layout_width="266dp"
+                android:layout_height="64dp"/>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/call_agv_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:text="呼叫物料 Gọi vật tư"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintWidth_percent="0.5" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

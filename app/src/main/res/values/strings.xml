@@ -1,0 +1,41 @@
+<resources>
+    <string name="app_name">AGV Caller</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+
+    <string name="version_text">Version 1.0</string>
+    <string name="username">用户名 Tên người dùng</string>
+    <string name="password">密码 Mật khẩu</string>
+    <string name="login">登录 Đăng nhập</string>
+    <string name="logout">登出 Đăng xuất</string>
+    <string name="login_failed">登录失败 Đăng nhập không thành công</string>
+    <string name="login_success">登录成功 Đăng nhập thành công</string>
+
+    <string name="title_system">CES AGV PDA系统</string>
+
+    <string name="call_trolley_available">Select one trolley</string>
+    <string name="call_trolley_unavailable">No Trolley available</string>
+
+    <string name="send_trolley_available">Sending trolley ...</string>
+    <string name="send_trolley_unavailable">Send trolley failed ... </string>
+
+    <string-array name="workstation_array">
+        <item>Workstation 1</item>
+        <item>Workstation 2</item>
+        <item>Workstation 3</item>
+        <item>Workstation 4</item>
+        <item>Workstation 5</item>
+        <item>Workstation 6</item>
+        <item>Workstation 7</item>
+        <item>Workstation 8</item>
+        <!-- 添加更多工站位 -->
+    </string-array>
+
+    <string-array name="line_array">
+        <item>Line 1</item>
+        <item>Line 2</item>
+        <item>Line 3</item>
+        <!-- 添加更多线体 -->
+    </string-array>
+</resources>

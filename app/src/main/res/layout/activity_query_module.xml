@@ -1,0 +1,325 @@
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".QueryModuleActivity">
+
+    <!-- 上半部分 -->
+    <LinearLayout
+        android:id="@+id/top_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.15"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- 文字 -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="AGV查询界面                                   Giao diện truy vấn AGV"
+            android:textSize="24sp" />
+
+    </LinearLayout>
+
+    <!-- 菜单框 -->
+    <LinearLayout
+        android:id="@+id/bind_section"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@id/top_navigation"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:paddingTop="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:paddingBottom="8dp"
+            android:text="绑定/解绑 Gán / Hủy gán"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+        <!-- 横线 -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="8dp"
+             android:orientation="vertical"
+            android:gravity="start">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:paddingTop="8dp"
+                android:orientation="horizontal"
+                android:gravity="start">
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    android:paddingTop="8dp"
+                    android:orientation="vertical"
+                    android:gravity="center_horizontal">
+                    <ImageButton
+                        android:id="@+id/bindproduct"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:src="@drawable/bindproduct"
+                        android:contentDescription="Bind Products"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:scaleType="fitCenter"
+                        android:layout_gravity="center_horizontal" />
+
+                    <TextView
+                        android:layout_width="167dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:gravity="center"
+                        android:paddingBottom="2dp"
+
+                        android:text="绑定产品                                      Gắn kết sản phẩm"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    android:paddingTop="8dp"
+                    android:orientation="vertical"
+                    android:gravity="start">
+                    <ImageButton
+                        android:id="@+id/bindground"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:src="@drawable/bindproduct"
+                        android:contentDescription="Bind Location"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:scaleType="fitCenter"
+                        android:layout_gravity="center_horizontal"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:gravity="center"
+                        android:paddingBottom="2dp"
+                        android:text="绑定地码                          Gán mã mặt đất"
+                        android:textSize="12sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:paddingTop="8dp"
+                android:orientation="horizontal"
+                android:gravity="start">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="89dp"
+                    android:layout_weight="1"
+                    android:gravity="start"
+                    android:orientation="vertical"
+                    android:paddingStart="16dp"
+                    android:paddingTop="8dp"
+                    android:paddingEnd="16dp">
+
+                    <ImageButton
+                        android:id="@+id/unbind"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:layout_gravity="center_horizontal"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:contentDescription="Unbind"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/unbind" />
+
+                    <TextView
+                        android:layout_width="123dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:gravity="center"
+                        android:paddingBottom="2dp"
+                        android:text="解绑货架码                   Hủy gán mã kệ"
+                        android:textSize="12sp" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    android:paddingTop="8dp"
+                    android:orientation="vertical"
+                    android:gravity="start">
+                    <ImageButton
+                        android:id="@+id/unbindground"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:src="@drawable/unbind"
+                        android:contentDescription="Unbind Location"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:scaleType="fitCenter"
+                        android:layout_gravity="center_horizontal"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:gravity="center"
+                        android:paddingBottom="2dp"
+                        android:text="解绑产品                         Hủy gán sản phẩm"
+                        android:textSize="12sp" />
+                </LinearLayout>
+            </LinearLayout>
+           
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:paddingBottom="8dp"
+            android:text="查询 Tra cứu"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+        <!-- 横线 -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray" />
+        <!-- 添加更多菜单项 -->
+         <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:paddingTop="8dp"
+                android:orientation="horizontal"
+                android:gravity="start">
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    android:layout_weight="0.5"
+                    android:paddingTop="8dp"
+                    android:orientation="vertical"
+                    android:gravity="start">
+                    <ImageButton
+                        android:id="@+id/query"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:src="@drawable/query"
+                        
+                        android:contentDescription="query"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:scaleType="fitCenter"
+                        android:layout_gravity="center_horizontal"/>
+
+                    <TextView
+                        android:layout_width="163dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:gravity="center"
+                        android:paddingBottom="2dp"
+                        android:text="查询产品                                  Tra sản phẩm"
+                        android:textSize="12sp" />
+                </LinearLayout>
+             <LinearLayout
+                 android:layout_width="0dp"
+                 android:layout_height="wrap_content"
+                 android:paddingStart="16dp"
+                 android:paddingEnd="16dp"
+                 android:layout_weight="0.5"
+                 android:paddingTop="8dp"
+                 android:orientation="vertical"
+                 android:gravity="start">
+
+                 <ImageButton
+                     android:id="@+id/query_ground"
+                     android:layout_width="45dp"
+                     android:layout_height="53dp"
+                     android:layout_gravity="center_horizontal"
+
+                     android:background="?attr/selectableItemBackgroundBorderless"
+                     android:contentDescription="query"
+                     android:scaleType="fitCenter"
+                     android:src="@drawable/query" />
+
+                 <TextView
+                     android:layout_width="160dp"
+                     android:layout_height="wrap_content"
+                     android:layout_gravity="center_horizontal"
+                     android:gravity="center"
+                     android:paddingBottom="2dp"
+                     android:text="查询地码                                Tra mã mặt đất"
+                     android:textSize="12sp" />
+             </LinearLayout>
+         </LinearLayout>
+    </LinearLayout>
+
+    
+
+
+    <!-- 底部导航按钮 -->
+    <LinearLayout
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:gravity="center">
+
+        <ImageButton
+            android:id="@+id/home"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_weight="0.5"
+            android:src="@drawable/homepage"
+            android:contentDescription="home"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:scaleType="fitCenter"
+            android:layout_gravity="center_horizontal"/>
+            <ImageButton
+         android:id="@+id/forklift"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_weight="0.5"
+            android:src="@drawable/forklift3"
+            android:contentDescription="forklift"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:scaleType="fitCenter"
+            android:layout_gravity="center_horizontal"/>
+
+
+    </LinearLayout>
+   
+</androidx.constraintlayout.widget.ConstraintLayout>

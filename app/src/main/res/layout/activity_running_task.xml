@@ -1,0 +1,163 @@
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".TaskActivity">
+
+    <!-- 上半部分 -->
+    <LinearLayout
+        android:id="@+id/top_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.15"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- 文字 -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="运行状态 Trạng thái vận hành"
+            android:textSize="24sp" />
+
+    </LinearLayout>
+
+   
+
+    <!-- 下半部分 -->
+    <LinearLayout
+        android:id="@+id/task_section"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        app:layout_constraintTop_toBottomOf="@id/top_navigation"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:orientation="vertical"
+        android:padding="16dp">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/task_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="8dp">
+
+            <TextView
+                android:id="@+id/task_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="任务列表 Danh sách nhiệm vụ"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+            <!--
+            <ImageView
+                android:id="@+id/bulb_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_bulb"
+                android:layout_marginStart="16dp"
+                app:layout_constraintStart_toEndOf="@id/task_text"
+                app:layout_constraintBottom_toBottomOf="@id/task_text" />  -->
+
+
+            <TextView
+                android:id="@+id/task_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textColor="@android:color/holo_green_dark"
+                 app:layout_constraintEnd_toStartOf="@+id/refresh_button"
+                app:layout_constraintBottom_toBottomOf="@id/task_text"
+                android:textSize="18sp"
+                android:layout_marginStart="4dp" />
+
+            <ImageButton
+                android:id="@+id/refresh_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:src="@drawable/ic_refresh"
+                app:layout_constraintBottom_toBottomOf="@id/task_text"
+                app:layout_constraintEnd_toEndOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <!-- 横线 -->
+        <View
+            android:id="@+id/task_line"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:layout_gravity="center"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+    </LinearLayout>
+        <!-- RecyclerView -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/task_list"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        app:layout_constraintTop_toBottomOf="@id/task_section"
+        app:layout_constraintBottom_toTopOf="@id/bottom_navigation"
+        app:layout_constraintStart_toStartOf="@id/task_section"
+        app:layout_constraintEnd_toEndOf="@id/task_section"
+        tools:itemCount="8" />
+
+
+    <!-- 底部导航按钮 -->
+    <LinearLayout
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:gravity="center">
+
+        <ImageButton
+            android:id="@+id/task_nav"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_weight="0.5"
+            android:src="@drawable/ic_bulb_blue"
+            android:contentDescription="warning"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:scaleType="fitCenter"
+            android:layout_gravity="center_horizontal"/>
+            <ImageButton
+         android:id="@+id/task"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_weight="0.5"
+            android:src="@drawable/task"
+            android:contentDescription="task"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:scaleType="fitCenter"
+            android:layout_gravity="center_horizontal"/>
+
+     
+    </LinearLayout>
+   
+</androidx.constraintlayout.widget.ConstraintLayout>
