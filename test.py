@@ -1,14 +1,43 @@
 #!/usr/bin/env python3
+import sys
+
 from flask import Flask, jsonify, request, Blueprint
+import logging
+
 
 app = Flask(__name__)
+
+# 创建一个Logger对象
+logger = logging.getLogger('my_logger')
+logger.setLevel(logging.DEBUG)  # 设置Logger的日志级别总开关
+
+# 创建一个Formatter，定义日志格式
+formatter = logging.Formatter('%(asctime)s - %(message)s')
+
+# 控制台处理器
+console_handler = logging.StreamHandler(sys.stdout)
+console_handler.setLevel(logging.INFO)
+console_handler.setFormatter(formatter)
+
+# 创建一个FileHandler，用于将日志写入文件
+file_handler = logging.FileHandler('log.txt', mode='a')  # 输出到log.txt，模式为追加
+file_handler.setLevel(logging.INFO)  # 设置输出到文件的日志级别
+
+
+# 将Formatter设置给FileHandler
+file_handler.setFormatter(formatter)
+
+# 5. 将FileHandler添加到Logger
+logger.addHandler(file_handler)
+logger.addHandler(console_handler)
+
 
 # 登录
 # mcs回复"code":	"0", 就是能登陆。账户校验都在mcs中做
 @app.route('/api/pdaToMcs/login', methods=['POST'])
 def login():
     req_data = request.get_json()
-    print("login：" + str(req_data))
+    logger.info("login：" + str(req_data))
 
     response = {
         "code":	"0",
@@ -28,7 +57,7 @@ def login():
 @app.route('/api/pdaToMcs/taskQuery', methods=['POST'])
 def task_query():
     req_data = request.get_json()
-    print("taskQuery：" + str(req_data))
+    logger.info("taskQuery：" + str(req_data))
 
     response = {
         "code":	"0",
@@ -62,7 +91,7 @@ def task_query():
 @app.route('/api/pdaToMcs/taskCancel', methods=['POST'])
 def task_cancel():
     req_data = request.get_json()
-    print("taskCancel：" + str(req_data))
+    logger.info("taskCancel：" + str(req_data))
 
     response = {
         "code":	"0",
@@ -75,7 +104,7 @@ def task_cancel():
 @app.route('/api/pdaToMcs/fetchErrorMsg', methods=['POST'])
 def fetch_error_msg():
     req_data = request.get_json()
-    print("fetchErrorMsg：" + str(req_data))
+    logger.info("fetchErrorMsg：" + str(req_data))
 
     response = {
         "code":	"0",
@@ -115,7 +144,7 @@ def fetch_error_msg():
 @app.route('/api/pdaToMcs/notifyErrorClear', methods=['POST'])
 def notify_error_clear():
     req_data = request.get_json()
-    print("notifyErrorClear：" + str(req_data))
+    logger.info("notifyErrorClear：" + str(req_data))
 
     response = {
         "code":	"0",
@@ -129,7 +158,7 @@ def notify_error_clear():
 @app.route('/api/pdaToMcs/queryProductStation', methods=['POST'])
 def query_product_station():
     req_data = request.get_json()
-    print("queryProductStation：" + str(req_data))
+    logger.info("queryProductStation：" + str(req_data))
 
     response = {
         "code":	"0",
@@ -143,7 +172,7 @@ def query_product_station():
 @app.route('/api/pdaToMcs/queryGroundBindingInfo', methods=['POST'])
 def query_ground_binding_info():
     req_data = request.get_json()
-    print("queryGroundBindingInfo：" + str(req_data))
+    logger.info("queryGroundBindingInfo：" + str(req_data))
 
     response = {
         "code":	"0",
@@ -157,7 +186,7 @@ def query_ground_binding_info():
 @app.route('/api/pdaToMcs/bindCartPosition', methods=['POST'])
 def bind_cart_position():
     req_data = request.get_json()
-    print("bindCartPosition：" + str(req_data))
+    logger.info("bindCartPosition：" + str(req_data))
 
     response = {
         "code":	"0",
@@ -171,7 +200,7 @@ def bind_cart_position():
 @app.route('/api/pdaToMcs/sendTrolleyByAGV', methods=['POST'])
 def send_trolley_by_agv():
     req_data = request.get_json()
-    print("sendTrolleyByAGV：" + str(req_data))
+    logger.info("sendTrolleyByAGV：" + str(req_data))
 
     response = {
         "code":	"0",
@@ -185,7 +214,7 @@ def send_trolley_by_agv():
 @app.route('/api/pdaToMcs/bindCartProducts', methods=['POST'])
 def bind_cart_products():
     req_data = request.get_json()
-    print("bindCartProducts：" + str(req_data))
+    logger.info("bindCartProducts：" + str(req_data))
 
     response = {
         "code":	"0",
@@ -199,7 +228,7 @@ def bind_cart_products():
 @app.route('/api/pdaToMcs/queryCartBindingInfo', methods=['POST'])
 def query_cart_binding_info():
     req_data = request.get_json()
-    print("queryCartBindingInfo：" + str(req_data))
+    logger.info("queryCartBindingInfo：" + str(req_data))
 
     response = {
         "code":	"0",
@@ -230,7 +259,7 @@ def query_cart_binding_info():
 @app.route('/api/pdaToMcs/unbindCartPosition', methods=['POST'])
 def unbind_cart_position():
     req_data = request.get_json()
-    print("unbindCartPosition：" + str(req_data))
+    logger.info("unbindCartPosition：" + str(req_data))
 
     response = {
         "code":	"0",
@@ -243,7 +272,7 @@ def unbind_cart_position():
 @app.route('/api/pdaToMcs/unbindCartProducts', methods=['POST'])
 def unbind_cart_products():
     req_data = request.get_json()
-    print("unbindCartProducts：" + str(req_data))
+    logger.info("unbindCartProducts：" + str(req_data))
 
     response = {
         "code":	"0",
@@ -256,7 +285,7 @@ def unbind_cart_products():
 @app.route('/api/pdaToMcs/bindForkPosition', methods=['POST'])
 def bind_fork_position():
     req_data = request.get_json()
-    print("bindForkPosition：" + str(req_data))
+    logger.info("bindForkPosition：" + str(req_data))
 
     response = {
         "code":	"0",
@@ -270,7 +299,7 @@ def bind_fork_position():
 @app.route('/api/pdaToMcs/unbindForkPosition', methods=['POST'])
 def unbind_fork_position():
     req_data = request.get_json()
-    print("unbindForkPosition：" + str(req_data))
+    logger.info("unbindForkPosition：" + str(req_data))
 
     response = {
         "code":	"0",
@@ -284,7 +313,7 @@ def unbind_fork_position():
 @app.route('/api/pdaToMcs/queryFlProductBindingInfo', methods=['POST'])
 def query_fl_product_binding_info():
     req_data = request.get_json()
-    print("queryFlProductBindingInfo：" + str(req_data))
+    logger.info("queryFlProductBindingInfo：" + str(req_data))
 
     response = {
         "code":	"0",
@@ -302,7 +331,7 @@ def query_fl_product_binding_info():
 @app.route('/api/pdaToMcs/callfindStorage', methods=['POST'])
 def call_find_storage():
     req_data = request.get_json()
-    print("callfindStorage：" + str(req_data))
+    logger.info("callfindStorage：" + str(req_data))
 
     response = {
         "code":	"0",
@@ -314,9 +343,9 @@ def call_find_storage():
 
 # 抓取地码，用于让AGV拉来该料车
 @app.route('/api/pdaToMcs/callfindLocation', methods=['POST'])
-def call_find_location_or_Box_Size():
+def call_find_location():
     req_data = request.get_json()
-    print("callfindLocation：" + str(req_data))
+    logger.info("callfindLocation：" + str(req_data))
 
     response = {
         "code":	"0",
@@ -330,7 +359,7 @@ def call_find_location_or_Box_Size():
 @app.route('/api/pdaToMcs/callSelected', methods=['POST'])
 def call_selected():
     req_data = request.get_json()
-    print("callSelected：" + str(req_data))
+    logger.info("callSelected：" + str(req_data))
 
     response = {
         "code":	"0",
@@ -344,7 +373,7 @@ def call_selected():
 @app.route('/api/pdaToMcs/sendfetchStorage', methods=['POST'])
 def send_fetch_storage():
     req_data = request.get_json()
-    print("sendfetchStorage：" + str(req_data))
+    logger.info("sendfetchStorage：" + str(req_data))
 
     response = {
         "code":	"0",
@@ -357,7 +386,7 @@ def send_fetch_storage():
 @app.route('/api/pdaToMcs/sendfetchLocation', methods=['POST'])
 def send_fetch_location():
     req_data = request.get_json()
-    print("sendfetchLocation：" + str(req_data))
+    logger.info("sendfetchLocation：" + str(req_data))
 
     response = {
         "code":	"0",
@@ -371,7 +400,7 @@ def send_fetch_location():
 @app.route('/api/pdaToMcs/sendSelected', methods=['POST'])
 def send_selected():
     req_data = request.get_json()
-    print("sendSelected：" + str(req_data))
+    logger.info("sendSelected：" + str(req_data))
 
     response = {
         "code":	"0",
@@ -386,7 +415,7 @@ def send_selected():
 @app.route('/api/pdaToMcs/callfindStorageAGF', methods=['POST'])
 def call_find_storage_agf():
     req_data = request.get_json()
-    print("callfindStorageAGF：" + str(req_data))
+    logger.info("callfindStorageAGF：" + str(req_data))
 
     response = {
         "code":	"0",
@@ -400,7 +429,7 @@ def call_find_storage_agf():
 @app.route('/api/pdaToMcs/callfindLocationAGF', methods=['POST'])
 def call_find_location_agf():
     req_data = request.get_json()
-    print("callfindLocationAGF：" + str(req_data))
+    logger.info("callfindLocationAGF：" + str(req_data))
 
     response = {
         "code":	"0",
@@ -414,7 +443,7 @@ def call_find_location_agf():
 @app.route('/api/pdaToMcs/callSelectedAGF', methods=['POST'])
 def call_selected_agf():
     req_data = request.get_json()
-    print("callSelectedAGF：" + str(req_data))
+    logger.info("callSelectedAGF：" + str(req_data))
 
     response = {
         "code":	"0",
@@ -428,7 +457,7 @@ def call_selected_agf():
 @app.route('/api/pdaToMcs/sendfetchStorageAGF', methods=['POST'])
 def send_fetch_storage_agf():
     req_data = request.get_json()
-    print("sendfetchStorageAGF：" + str(req_data))
+    logger.info("sendfetchStorageAGF：" + str(req_data))
 
     response = {
         "code":	"0",
@@ -441,7 +470,7 @@ def send_fetch_storage_agf():
 @app.route('/api/pdaToMcs/sendfetchLocationAGF', methods=['POST'])
 def send_fetch_location_agf():
     req_data = request.get_json()
-    print("sendfetchLocationAGF：" + str(req_data))
+    logger.info("sendfetchLocationAGF：" + str(req_data))
 
     response = {
         "code":	"0",
@@ -455,7 +484,7 @@ def send_fetch_location_agf():
 @app.route('/api/pdaToMcs/sendSelectedAGF', methods=['POST'])
 def send_selected_agf():
     req_data = request.get_json()
-    print("sendSelectedAGF：" + str(req_data))
+    logger.info("sendSelectedAGF：" + str(req_data))
 
     response = {
         "code":	"0",

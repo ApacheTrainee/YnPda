@@ -107,9 +107,9 @@ public class TrolleyTransporter {
         }
     }
 
-    public static TolleryTransportResponseBody callSelected(String cellId,String agvType,String storageCode,String location) {
+    public static TolleryTransportResponseBody callSelected(String cellId,String agvType,String storageCode,String location, String boxSize) {
         try {
-            TolleryTransportCallSelectRequestBody requestBody = new TolleryTransportCallSelectRequestBody(cellId,agvType,storageCode,location);
+            TolleryTransportCallSelectRequestBody requestBody = new TolleryTransportCallSelectRequestBody(cellId,agvType,storageCode,location, boxSize);
             ApiResponse<TolleryTransportResponseBody> response = HttpClient.post(Constants.getBaseUrl() + Constants.CALL_SELECTED, requestBody, TolleryTransportResponseBody.class);
             return response.getData();
         } catch (Exception e) {
@@ -427,12 +427,14 @@ class TolleryTransportCallSelectRequestBody {
     private String agvType;
     private String storageCode;
     private String location;
+    private String boxSize;
 
-    public TolleryTransportCallSelectRequestBody(String cellId, String agvType, String storageCode, String location) {
+    public TolleryTransportCallSelectRequestBody(String cellId, String agvType, String storageCode, String location, String boxSize) {
         this.cellId = cellId;
         this.agvType = agvType;
         this.storageCode = storageCode;
         this.location = location;
+        this.boxSize = boxSize;
     }
 }
 

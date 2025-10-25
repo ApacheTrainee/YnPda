@@ -54,15 +54,18 @@ public class CallTrolleyActivity extends AppCompatActivity {
     private Spinner agvType_spinner;
     private Spinner storage_spinner;
     private Spinner location_spinner;
+    private Spinner boxSize_spinner;
     // 存储从MCS获取的数据
     private List<String> agvTypes = new ArrayList<>();
     private List<String> storage = new ArrayList<>();
     private List<String> location = new ArrayList<>();
+    private List<String> boxSize = new ArrayList<>();
     // 当前选择的值
     private String selectedGroundCode = "";
     private String selectedAgvTypes = "";
     private String selectedStorage = "";
     private String selectedLocation = "";
+    private String selectedBoxSize = "";
     private boolean isProgrammaticallyClearing = false;
     private Handler handler = new Handler(Looper.getMainLooper());
     private Runnable groundInputRunnable;
@@ -92,15 +95,24 @@ public class CallTrolleyActivity extends AppCompatActivity {
         agvType_spinner = findViewById(R.id.agvType_spinner);
         storage_spinner = findViewById(R.id.storage_spinner);
         location_spinner = findViewById(R.id.location_spinner);
+        boxSize_spinner = findViewById(R.id.boxSize_spinner);
+
         ArrayAdapter<String> agvTypeAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, agvTypes);
         agvTypeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         agvType_spinner.setAdapter(agvTypeAdapter);
+
         ArrayAdapter<String> storageAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, storage);
         storageAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         storage_spinner.setAdapter(storageAdapter);
+
         ArrayAdapter<String> locationAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, location);
         locationAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         location_spinner.setAdapter(locationAdapter);
+
+        ArrayAdapter<String> boxSizeAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, boxSize);
+        boxSizeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        boxSize_spinner.setAdapter(boxSizeAdapter);
+
         // 禁用下拉框
         disableAllSpinners();
 
@@ -196,7 +208,7 @@ public class CallTrolleyActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if (position != 0) {
                     selectedStorage = storage.get(position);
-                    findLocation();
+                    findLocationOrBoxSize();
                 }
             }
 
@@ -210,6 +222,18 @@ public class CallTrolleyActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if (position != 0) {
                     selectedLocation = location.get(position);
+                }
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {}
+        });
+
+        // 箱子尺码选择监听
+        boxSize_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (position != 0) {
+                    selectedBoxSize = boxSize.get(position);
                 }
             }
             @Override
@@ -328,18 +352,32 @@ public class CallTrolleyActivity extends AppCompatActivity {
         Toast.makeText(CallTrolleyActivity.this, "location enable", Toast.LENGTH_SHORT).show();
     }
 
+    private void enableBoxSizeSpinner() {
+        // 启用箱子尺码下拉框并加载数据
+        boxSize_spinner.setEnabled(true);
+        ((ArrayAdapter) boxSize_spinner.getAdapter()).notifyDataSetChanged();
+        boxSize_spinner.setSelection(0); // 新增这一行，确保默认显示为空
+        storage_spinner.setEnabled(false);
+        Toast.makeText(CallTrolleyActivity.this, "boxSize enable", Toast.LENGTH_SHORT).show();
+    }
+
     private void disableAllSpinners() {
         agvType_spinner.setEnabled(false);
         storage_spinner.setEnabled(false);
         location_spinner.setEnabled(false);
+        boxSize_spinner.setEnabled(false);
+
         agvTypes.clear();
         storage.clear();
         location.clear();
+        boxSize.clear();
+
         ((ArrayAdapter) agvType_spinner.getAdapter()).notifyDataSetChanged();
         ((ArrayAdapter) storage_spinner.getAdapter()).notifyDataSetChanged();
         ((ArrayAdapter) location_spinner.getAdapter()).notifyDataSetChanged();
+        ((ArrayAdapter) boxSize_spinner.getAdapter()).notifyDataSetChanged();
 
-        Toast.makeText(CallTrolleyActivity.this, "agvType、storage、location disenable", Toast.LENGTH_SHORT).show();
+        Toast.makeText(CallTrolleyActivity.this, "agvType、storage、location、boxSize disenable", Toast.LENGTH_SHORT).show();
     }
 
     private void findStorage() {
@@ -409,7 +447,7 @@ public class CallTrolleyActivity extends AppCompatActivity {
         }).start();
     }
 
-    private void findLocation() {
+    private void findLocationOrBoxSize() {
         // 显示加载中提示
 //        ProgressDialog progressDialog = new ProgressDialog(this);
 //        progressDialog.setMessage("加载库位数据中...");
@@ -438,21 +476,44 @@ public class CallTrolleyActivity extends AppCompatActivity {
                     //progressBar.setVisibility(View.GONE);
 
                     if (finalSuccess) {
-                        // 解析响应数据，格式："数量,库位1,库位2,......,库位3"
+                        // 解析响应数据，格式：(1) "数量,库位1,库位2,......,库位3,location" (2) "5,1,2,...5,boxSize"
                         String[] parts = finalMessage.split(",");
                         int count = Integer.parseInt(parts[0]);
-                        location.clear();
-                        // 在添加真实数据前，先添加一个空字符串作为空选项
-                        location.add(""); // 新增这一行
-                        for (int i = 1; i <= count; i++) {
-                            location.add(parts[i]);
-                        }
-                        ((ArrayAdapter) location_spinner.getAdapter()).notifyDataSetChanged();
-                        //location_spinner.setEnabled(true);
+                        String type = parts[parts.length - 1];
 
-                        Toast.makeText(CallTrolleyActivity.this, "find location OK", Toast.LENGTH_SHORT).show();
-                        Log.d("Dialog", "获取起点库位成功");
-                        enableLocationSpinner();
+                        switch (type) {
+                            case "location":
+                                location.clear();
+                                location.add(""); // 在添加真实数据前，先添加一个空字符串作为空选项
+
+                                for (int i = 1; i <= count; i++) {
+                                    location.add(parts[i]);
+                                }
+                                ((ArrayAdapter) location_spinner.getAdapter()).notifyDataSetChanged();
+                                Toast.makeText(CallTrolleyActivity.this, "find location OK", Toast.LENGTH_SHORT).show();
+                                Log.d("Dialog", "获取起点库位成功");
+                                enableLocationSpinner();
+                                break;
+                            case "boxSize":
+                                boxSize.clear();
+                                boxSize.add(""); // 在添加真实数据前，先添加一个空字符串作为空选项
+
+                                for (int i = 1; i <= count; i++) {
+                                    boxSize.add(parts[i]);
+                                }
+                                ((ArrayAdapter) boxSize_spinner.getAdapter()).notifyDataSetChanged();
+                                Toast.makeText(CallTrolleyActivity.this, "find boxSize OK", Toast.LENGTH_SHORT).show();
+                                Log.d("Dialog", "获取箱子尺码成功");
+                                enableBoxSizeSpinner();
+                                break;
+                            default:
+                                groundCodeEditText.setText("");
+                                selectedGroundCode = "";
+                                isProgrammaticallyClearing = true;
+                                Toast.makeText(CallTrolleyActivity.this, "获取库位数据异常", Toast.LENGTH_SHORT).show();
+                                Log.e("CallTrolley", "获取库位数据异常: " + finalMessage);
+                                break;
+                        }
                     } else {
                         Toast.makeText(CallTrolleyActivity.this, "find location Failed" + finalMessage, Toast.LENGTH_SHORT).show();
                         groundCodeEditText.setText("");
@@ -491,7 +552,7 @@ public class CallTrolleyActivity extends AppCompatActivity {
                     }
                 });
                 if (Objects.equals(selectedAgvTypes, "AGF1")) {
-                    TolleryTransportResponseBody agf_response = TrolleyTransporter.callSelected(cellId,selectedAgvTypes,selectedStorage,selectedLocation);
+                    TolleryTransportResponseBody agf_response = TrolleyTransporter.callSelected(cellId,selectedAgvTypes,selectedStorage,selectedLocation, selectedBoxSize);
                     boolean agf_success = false;
                     String agf_message = "";
 
@@ -524,7 +585,7 @@ public class CallTrolleyActivity extends AppCompatActivity {
                         }
                     });
                 } else {
-                    TolleryTransportResponseBody agv_response = TrolleyTransporter.callSelected(cellId,selectedAgvTypes,selectedStorage,selectedLocation);
+                    TolleryTransportResponseBody agv_response = TrolleyTransporter.callSelected(cellId,selectedAgvTypes,selectedStorage,selectedLocation, selectedBoxSize);
                     boolean agv_success = false;
                     String agv_message = "";
 
