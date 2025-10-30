@@ -3,5 +3,5 @@ app/build/
 *.iml
 *.hprof
 .gradle/
-build/
+build/reports/problems/problems-report.html
 log.txt
